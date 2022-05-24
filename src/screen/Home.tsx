@@ -18,16 +18,13 @@ export function HomeScreen({navigation}: {navigation: any}) {
   const [userData, setUserData] = useState<UserData>({});
   const {width} = useWindowDimensions();
 
-  const getApi = async () => {};
-
+  // get data every focus on the screen
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      setFetchLoading(true);
       (async () => {
         try {
-          console.log('pppppppp');
+          setFetchLoading(true);
           const response = await getUserApi();
-          console.log('jkjkjkjk');
           setUserData(response);
           setFetchLoading(false);
         } catch (error) {
@@ -37,9 +34,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
     });
     return unsubscribe;
   }, [navigation]);
-  console.log('====================================');
-  console.log(fetchLoading);
-  console.log('====================================');
+
   return (
     <View style={{flex: 1}}>
       {fetchLoading && (
@@ -51,7 +46,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
         <View style={{alignItems: 'center'}}>
           <FastImage
             source={{uri: userData?.picture?.large}}
-            style={{width: width, height: width}}
+            style={{width: width, height: (width * 4) / 5}}
           />
           <Text style={styles.Name}>
             {userData?.name?.title} {userData?.name?.first}{' '}
@@ -71,7 +66,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
     </View>
   );
 }
-
+// Add external styles
 const styles = StyleSheet.create({
   centerContainer: {
     alignItems: 'center',

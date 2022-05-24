@@ -4,6 +4,7 @@ import FastImage from 'react-native-fast-image';
 import MapView from 'react-native-maps';
 import {UserData} from '../interface/userData';
 
+// Add Props interface
 interface Props {
   route: {params: {userData: UserData}};
 }

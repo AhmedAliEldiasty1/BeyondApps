@@ -1,3 +1,4 @@
+// Add UserData interface
 export interface UserData {
   picture?: {
     large: string;
